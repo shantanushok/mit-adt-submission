@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMD Project Dashboard</title>
+    <meta name="description" content="Dashboard for the AMD web application.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+    
+    <div class="app-container">
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="4" fill="url(#paint0_linear)"/>
+                    <path d="M12 7L17 17H7L12 7Z" fill="white"/>
+                    <defs>
+                        <linearGradient id="paint0_linear" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#4F46E5"/>
+                            <stop offset="1" stop-color="#7C3AED"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <h2>AMD Core</h2>
+            </div>
+            <nav class="nav-links">
+                <a href="#overview" class="nav-item active">Overview</a>
+                <a href="#streams" class="nav-item">Data Streams</a>
+                <a href="#storage" class="nav-item">Storage</a>
+                <a href="#settings" class="nav-item">Settings</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar glass-panel">
+                <h1>Overview</h1>
+                <div class="user-profile">
+                    <span class="status-indicator online"></span>
+                    <span class="user-name">System Admin</span>
+                </div>
+            </header>
+
+            <section class="dashboard-grid">
+                <!-- Status Card -->
+                <div class="card glass-panel status-card">
+                    <h3>Backend API Status</h3>
+                    <div class="status-indicator-lg disconnected" id="api-status-indicator"></div>
+                    <p id="api-status-text">Disconnected</p>
+                    <button class="btn btn-primary" id="connect-btn">Connect to API</button>
+                    <div class="loader hidden" id="api-loader"></div>
+                </div>
+
+                <!-- Stats Cards (Mock) -->
+                <div class="card glass-panel stat-card">
+                    <p class="stat-label">Events Processed (Kafka)</p>
+                    <h2 class="stat-value">--</h2>
+                </div>
+                <div class="card glass-panel stat-card">
+                    <p class="stat-label">Database Documents (MongoDB)</p>
+                    <h2 class="stat-value">--</h2>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
