@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="background-effects">
@@ -59,14 +61,27 @@
                     <div class="loader hidden" id="api-loader"></div>
                 </div>
 
-                <!-- Stats Cards (Mock) -->
+                <!-- Stats Cards (Live) -->
                 <div class="card glass-panel stat-card">
                     <p class="stat-label">Events Processed (Kafka)</p>
-                    <h2 class="stat-value">--</h2>
+                    <h2 class="stat-value" id="kafka-value">--</h2>
                 </div>
                 <div class="card glass-panel stat-card">
                     <p class="stat-label">Database Documents (MongoDB)</p>
-                    <h2 class="stat-value">--</h2>
+                    <h2 class="stat-value" id="db-value">--</h2>
+                </div>
+                <div class="card glass-panel stat-card">
+                    <p class="stat-label">Last System Event</p>
+                    <h2 class="stat-value" id="last-event" style="font-size: 1.5rem; color: var(--accent-primary);">--</h2>
+                </div>
+            </section>
+
+            <section class="dashboard-grid" style="grid-template-columns: 1fr; margin-top: 1rem;">
+                <div class="card glass-panel">
+                    <h3>Live Telemetry Stream</h3>
+                    <div style="position: relative; height:300px; width:100%">
+                        <canvas id="telemetryChart"></canvas>
+                    </div>
                 </div>
             </section>
         </main>

@@ -9,6 +9,7 @@ from app.services.kafka_service import KafkaService
 from app.services.firebase_service import init_firebase
 from app.services.imagekit_service import init_imagekit
 from app.worker.kafka_consumer import KafkaWorker
+from app.worker.mock_generator import MockTelemetryTask
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -22,12 +23,14 @@ async def lifespan(app: FastAPI):
     await connect_to_mongo()
     await KafkaService.connect()
     await KafkaWorker.start()
+    MockTelemetryTask.start()
     yield
     # Shutdown Events
     logger.info("Shutting down services...")
     await close_mongo_connection()
     await KafkaService.disconnect()
     await KafkaWorker.stop()
+    MockTelemetryTask.stop()
 
 # Initialize FastAPI application
 app = FastAPI(
