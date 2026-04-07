@@ -2,8 +2,11 @@ from fastapi import APIRouter
 import logging
 from app.db.mongodb import db
 from app.services.kafka_service import KafkaService
+from app.api import auth, upload
 
 router = APIRouter()
+router.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+router.include_router(upload.router, prefix="/upload", tags=["Uploads"])
 logger = logging.getLogger(__name__)
 
 @router.get("/status")
