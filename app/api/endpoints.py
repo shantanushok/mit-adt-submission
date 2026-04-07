@@ -1,14 +1,15 @@
 from fastapi import APIRouter
 import logging
 from app.db.mongodb import db
-from app.db.mongodb import db
 from app.services.kafka_service import KafkaService
-from app.api import auth, upload, ws
+from app.api import auth, upload, ws, users, events
 
 router = APIRouter()
 router.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 router.include_router(upload.router, prefix="/upload", tags=["Uploads"])
 router.include_router(ws.router, prefix="/ws", tags=["WebSockets"])
+router.include_router(users.router, prefix="/users", tags=["Users"])
+router.include_router(events.router, prefix="/events", tags=["Events"])
 logger = logging.getLogger(__name__)
 
 @router.get("/status")

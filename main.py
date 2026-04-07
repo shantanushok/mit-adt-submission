@@ -5,6 +5,7 @@ import logging
 
 from app.core.config import settings
 from app.db.mongodb import connect_to_mongo, close_mongo_connection
+from app.db.init_db import setup_indexes
 from app.services.kafka_service import KafkaService
 from app.services.firebase_service import init_firebase
 from app.services.imagekit_service import init_imagekit
@@ -21,6 +22,7 @@ async def lifespan(app: FastAPI):
     init_firebase()
     init_imagekit()
     await connect_to_mongo()
+    await setup_indexes()
     await KafkaService.connect()
     await KafkaWorker.start()
     MockTelemetryTask.start()
